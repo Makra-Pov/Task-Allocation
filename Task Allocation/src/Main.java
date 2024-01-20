@@ -52,6 +52,10 @@ public class Main {
                   System.out.println("\n");
                   assignedTask(n,tasks,employees);
                   break;
+               case 6:
+                  System.out.println("Program Exited!");
+                  System.exit(0);
+                  break;    
 
 
           }

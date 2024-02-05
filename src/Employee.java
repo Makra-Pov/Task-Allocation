@@ -15,7 +15,6 @@ public class Employee  {
         this.sex= scanner.nextLine();
         System.out.println("Input Employee Name:");
         this.name=scanner.nextLine();
-
     }
     public void output(){
         System.out.printf("%-10d %-20s %-20s ", id ,sex ,name);

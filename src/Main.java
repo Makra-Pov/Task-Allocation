@@ -36,8 +36,6 @@ public class Main {
                   System.out.println("\n");
                     break;
               case 2:
-                  System.out.printf("%-10s %-20s %-20s","ID","Sex" ,"Name" );
-                  System.out.println("\n");
                   outputAll(n,employees);
                   break;
               case 3:
@@ -73,9 +71,17 @@ public class Main {
         }
     }
     public static void outputAll(int n,Employee[] e){
-        for(int i=0;i<n;i++){
-            e[i].output();
+        if(e.length==0){
+            System.out.println("No Employee registered yet!");
+        }
+        else {
+
+            System.out.printf("%-10s %-20s %-20s","ID","Sex" ,"Name" );
             System.out.println("\n");
+            for (int i = 0; i < n; i++) {
+                e[i].output();
+                System.out.println("\n");
+            }
         }
     }
     public static void assignTask(int n, Task[] t, Employee[] e) {
@@ -104,41 +110,41 @@ public class Main {
     }
 
     public static void assignedTask(Task[] t, Employee[] e) {
-        for (int i = 0;i<t.length; i++) {
-            if (t[i] != null) {
+        boolean tasksAssigned = false;
+
+        for (int i = 0; i < t.length; i++) {
+            if (t[i] != null && e[i] != null) { // Check if both task and employee are not null
                 System.out.println("----------------------------------Task[" + (i + 1) + "]----------------------------------");
                 System.out.println("Employee ID: " + e[i].getId());
                 t[i].output();
                 System.out.println("\n");
-
-            } else {
-                System.out.println("No task found.");
-                break;
+                tasksAssigned = true;
             }
         }
+
+        if (!tasksAssigned) {
+            System.out.println("No tasks assigned!");
+        }
     }
+
 
     public static void removeTask(int n, Task[] t) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Input Task ID to delete:");
         int taskIdToDelete = scanner.nextInt();
-
         boolean taskFound = false;
-
-
         for (int i = 0; i < n; i++) {
             if (t[i] != null && taskIdToDelete == t[i].getId()) {
                 taskFound = true;
 
                 t[i] = null;
                 System.out.println("Task with Task ID " + taskIdToDelete + " deleted successfully.");
-                break;
+            }
+            if (!taskFound) {
+                System.out.println("Task with Task ID " + taskIdToDelete + " not found.");
             }
         }
 
-        if (!taskFound) {
-            System.out.println("Task with Task ID " + taskIdToDelete + " not found.");
-        }
     }
 }
